@@ -1,6 +1,6 @@
 import express from "express";
 import cors from 'cors'
-import { ENV } from "./config/env.js";
+import dotenv from 'dotenv/config'
 import { connectDB } from "./config/db.js";
 import { clerkMiddleware } from '@clerk/express'
 import userRoutes from './routes/user.route.js'
@@ -33,7 +33,7 @@ const startServer = async () => {
         await connectDB();
 
 
-        app.listen(ENV.PORT, () => console.log("Server is up and running on PORT:", ENV.PORT));
+        app.listen(process.env.PORT, () => console.log("Server is up and running on PORT:", process.env.PORT));
 
     } catch (error) {
         console.error("Failed to start server:", error.message);
